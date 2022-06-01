@@ -43,6 +43,7 @@ public class Player : KinematicBody2D
 		
 	}
 	
+	// When a body enters rotating part #1:
 	private void _on_RotatingPart1_body_entered(KinematicBody2D body)
 	{
 		if(Rotating1.Visible == true && body.IsInGroup("Enemies"))
@@ -54,6 +55,7 @@ public class Player : KinematicBody2D
 		}
 	}
 	
+	// When a body enters rotating part #2:
 	private void _on_RotatingPart2_body_entered(KinematicBody2D body)
 	{
 		if (Rotating2.Visible == true && body.IsInGroup("Enemies"))
@@ -62,6 +64,7 @@ public class Player : KinematicBody2D
 		}
 	}
 		
+	// When a body enters rotating part #3:
 	private void _on_RotatingPart3_body_entered(KinematicBody2D body)
 	{
 		if (Rotating3.Visible == true && body.IsInGroup("Enemies"))
@@ -70,6 +73,7 @@ public class Player : KinematicBody2D
 		}
 	}
 	
+	// WHen a body enters rotating part #4:
 	private void _on_RotatingPart4_body_entered(KinematicBody2D body)
 	{
 		if (Rotating4.Visible == true && body.IsInGroup("Enemies"))
@@ -77,6 +81,8 @@ public class Player : KinematicBody2D
 			body.GetNode<TextureProgress>("HpBar").Value -= Global.SwordDamage;
 		}
 	}
+	
+	// Gets the input of the user. ex, when user presses right button, velocity increases and flip the character
 	public void GetInput()
 	{
 		velocity = new Vector2();
@@ -112,19 +118,20 @@ public class Player : KinematicBody2D
 		velocity = velocity.Normalized() * speed;
 	}
 
+	// runs every frame
 	public override void _PhysicsProcess(float delta)
 	{
 		GetInput();
-		velocity = MoveAndSlide(velocity);
-	
+		velocity = MoveAndSlide(velocity);	
 		
-		
+		// rotates the moving parts, swords.
 		Rotating1.Rotation += Global.RotationSpeed * delta;
 		Rotating2.Rotation += Global.RotationSpeed * delta;
 		Rotating3.Rotation += Global.RotationSpeed * delta;
 		Rotating4.Rotation += Global.RotationSpeed * delta;
 	}
 	
+	// When a body (enemy) enters the player, take damage
 	private void _on_Area2D_body_entered(KinematicBody2D body)
 	{
 		if (body.IsInGroup("Enemies") && Attackable == true)
@@ -137,6 +144,7 @@ public class Player : KinematicBody2D
 		}
 	}	
 	
+	// Invincibility timer, player goes back to normal transparency when timer runs out
 	private void _on_InvTimer_timeout()
 	{
 		Attackable = true;
