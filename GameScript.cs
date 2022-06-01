@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class GameScript : Node
 {
+	// Variables
 	public int Score;
 	public KinematicBody2D BatMob;
 	public KinematicBody2D SkeleMob;
@@ -17,12 +18,12 @@ public class GameScript : Node
 	Random pos = new Random();
 	
 // -1776 - 2350
-
+	
 	public PackedScene Enemy1 = ResourceLoader.Load("res://Scenes/BatEnemy.tscn") as PackedScene;
 	public PackedScene Enemy2 = ResourceLoader.Load("res://Scenes/SkeleEnemy.tscn") as PackedScene;	
 	public PackedScene Enemy3 = ResourceLoader.Load("res://Scenes/SlimeEnemy.tscn") as PackedScene;
 
-	
+	// Called when the node enters the tree for the first time
 	public override void _Ready()
 	{
 		ScoreLabel = GetNode<Label>("/root/Node2D/CanvasLayer/ScoreLabel");
@@ -34,6 +35,7 @@ public class GameScript : Node
 		GameOverScreen = GetNode<Label>("CanvasLayer/GameOverScreen");
 	}
 	
+	// Runs the code inside every frame
 	public override void _Process(float delta)
 	{ 
 		ScoreLabel.Text = "Score: " + Global.Score.ToString();
@@ -53,6 +55,7 @@ public class GameScript : Node
 		}
 	}
 	
+	// When the spawn timer runs out, spawn more enemies
 	private void _on_SpawnTimer_timeout()
 	{
 		KinematicBody2D BatMob = (KinematicBody2D)Enemy1.Instance();
@@ -95,6 +98,7 @@ public class GameScript : Node
 		
 	}
 	
+	// Every 5 seconds, if the player's hp is lower than 100, add 5 hp to Player's health
 	private void _on_RegenTimer_timeout()
 	{
 		if (Health.Value < 100)
@@ -104,6 +108,7 @@ public class GameScript : Node
 		}
 	}
 	
+	// code for when game is over
 	public void GameOver()
 	{
 		
