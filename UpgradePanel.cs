@@ -3,6 +3,7 @@ using System;
 
 public class UpgradePanel : Panel
 {
+	// Variables
 	public Button UpgradeNumberSwords;
 	public Button UpgradeSpeedSwords;
 	public Button UpgradeDamageSwords;
@@ -12,6 +13,7 @@ public class UpgradePanel : Panel
 	public Area2D Rotating3;
 	public Area2D Rotating4;
 
+	// Executed when the node enters the tree for the first time
 	public override void _Ready()
 	{
 		UpgradeNumberSwords = GetNode<Button>("Panel1/Button");
@@ -26,6 +28,7 @@ public class UpgradePanel : Panel
 
  	private void _on_Button1_pressed() // Increases the amount of swords that you possess.
  	{
+		// Checks if you have already have swords
 		MainPanel.Visible = false;
 		if (Rotating1.Visible == true && Rotating2.Visible == false && Rotating3.Visible == false && Rotating4.Visible == false)
 		{
@@ -53,7 +56,8 @@ public class UpgradePanel : Panel
 	private void _on_Button2_pressed() // Increases the rotation speed of the swords.
 	{
 		MainPanel.Visible = false;
-		
+	
+		// Increases the rotation speed based on what upgrade you have already
 		if (Global.RotationSpeed == 2)
 		{
 			UpgradeSpeedSwords.Text = "UPGRADE - 2/4";
@@ -77,10 +81,12 @@ public class UpgradePanel : Panel
 		}
 	}
 	
+	// Increases the damage your swords deal to enemies
 	private void _on_Button3_pressed()
 	{
 		MainPanel.Visible = false;
 		
+		// Increases the damage based on how much damage it already has
 		if (Global.SwordDamage == 25)
 		{
 			UpgradeDamageSwords.Text = "UPGRADE - 2/4";
