@@ -3,6 +3,7 @@ using System;
 
 public class Global : Node2D
 {
+	// Public global variables usable in other scripts
 	public static int Score;
 	public static int SwordDamage = 25;
 	public static int RotationSpeed = 2;
