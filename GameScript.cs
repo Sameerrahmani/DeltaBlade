@@ -38,9 +38,11 @@ public class GameScript : Node
 	// Runs the code inside every frame
 	public override void _Process(float delta)
 	{ 
+		// Score labels
 		ScoreLabel.Text = "Score: " + Global.Score.ToString();
 		UpgradeLabel.Text = "Points until next level: " + (Global.PointsTillLvlUp - Global.Score);
 		
+		// if the score is greater or equal to points till level up, then level up
 		if (Global.Score >= Global.PointsTillLvlUp)
 		{
 			UpgradePanel.Visible = true;
@@ -62,11 +64,12 @@ public class GameScript : Node
 		KinematicBody2D BatMob1 = (KinematicBody2D)Enemy1.Instance();
 		KinematicBody2D SkeleMob = (KinematicBody2D)Enemy2.Instance();
 		KinematicBody2D SkeleMob1 = (KinematicBody2D)Enemy2.Instance();
+		KinematicBody2D SkeleMob2 = (KinematicBody2D)Enemy2.Instance();
 		KinematicBody2D SlimeMob = (KinematicBody2D)Enemy3.Instance();
 		KinematicBody2D SlimeMob1 = (KinematicBody2D)Enemy3.Instance();
 		
 		
-		if (Global.Score <= 45)
+		if (Global.Level == 1)
 		{
 			
 			AddChild(BatMob);
@@ -75,7 +78,7 @@ public class GameScript : Node
 			BatMob1.Position = new Vector2(pos.Next(-1776, 2350), 1000);
 		}
 		
-		else if (Global.Score >= 45 && Global.Score < 150)
+		else if (Global.Level == 2)
 		{
 			SpawnTimer.WaitTime = 5;
 			AddChild(SlimeMob);
@@ -86,13 +89,26 @@ public class GameScript : Node
 			BatMob.Position = new Vector2(pos.Next(-1776, 2350), 1000);
 		}
 		
-		else if (Global.Score >= 150)
+		else if (Global.Level == 3)
 		{
 			SpawnTimer.WaitTime = 6;
 			AddChild(SkeleMob);
 			SkeleMob.Position = new Vector2(pos.Next(-1776, 2350), 1000);
 			AddChild(SkeleMob1);
 			SkeleMob1.Position = new Vector2(pos.Next(-1776, 2350), 80);
+			
+		}
+		
+		else if (Global.Level == 4)
+		{
+			Global.speed = 275;
+			SpawnTimer.WaitTime = 4;
+			AddChild(SkeleMob);
+			SkeleMob.Position = new Vector2(pos.Next(-1776, 2350), 1000);
+			AddChild(SkeleMob1);
+			SkeleMob1.Position = new Vector2(pos.Next(-1776, 2350), 80);
+			AddChild(SkeleMob2);
+			SkeleMob2.Position = new Vector2(pos.Next(-1777, 2350), 1000);
 			
 		}
 		
@@ -116,7 +132,18 @@ public class GameScript : Node
 		GameOverScreen.Visible = true;
 		
 	}
+	
+	private void _on_PlayAgain_pressed()
+	{
+		GameOverScreen.Visible = false;
+		Global.Score = 0;
+		GetTree().ReloadCurrentScene();
+		GetTree().Paused = false;
+	}
 }
+
+
+
 
 
 
