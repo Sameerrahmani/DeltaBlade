@@ -3,8 +3,8 @@ using System;
 
 public class Player : KinematicBody2D
 {
-	// Movement Variables
-	public int speed = 200;
+
+
 	public bool Attackable = true;
 	public int MaxHealth = 100;
 	
@@ -115,7 +115,7 @@ public class Player : KinematicBody2D
 		}
 		
 
-		velocity = velocity.Normalized() * speed;
+		velocity = velocity.Normalized() * Global.speed;
 	}
 
 	// runs every frame
