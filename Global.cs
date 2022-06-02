@@ -9,4 +9,5 @@ public class Global : Node2D
 	public static int RotationSpeed = 2;
 	public static int PointsTillLvlUp = 45;
 	public static int Level = 1;
+	public static int speed = 200;
 }
