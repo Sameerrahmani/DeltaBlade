@@ -66,7 +66,6 @@ public class Bat : KinematicBody2D
 				Global.Score = Global.PointsTillLvlUp;
 			}
 			GD.Print(Global.Score);
-			DeathSound.Play();
 			QueueFree();
 			
 		}
