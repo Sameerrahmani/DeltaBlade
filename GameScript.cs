@@ -140,7 +140,18 @@ public class GameScript : Node
 		GetTree().ReloadCurrentScene();
 		GetTree().Paused = false;
 	}
+	
+	private void _on_Exit_pressed()
+	{
+		GetTree().Paused = false;
+		GameOverScreen.Visible = false;
+		GetTree().ChangeScene("res://Scenes/MainMenu.tscn");
+		
+	}
 }
+
+
+
 
 
 
