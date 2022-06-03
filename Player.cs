@@ -4,11 +4,9 @@ using System;
 public class Player : KinematicBody2D
 {
 
-
+	// Variables
 	public bool Attackable = true;
 	public int MaxHealth = 100;
-	
-	// node Variables
 	public TextureProgress EnemyHp;
 	public Area2D Rotating1;
 	public Area2D Rotating2;
